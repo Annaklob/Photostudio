@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кабінет клієнта | LUMINA.STUDIO</title>
+    <link rel="stylesheet" href="/css/client-panel.css">
+
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">LUMINA.STUDIO</div>
+  <div class="header-actions">
+    <div class="user-info" id="userInfo">Клієнт</div>
+    <a href="index.html" class="home-link">На сайт</a>
+    <button class="logout-btn" id="logoutBtn">Вийти</button>
+  </div>
+</header>
+
+<main class="page">
+  <div class="top-block">
+    <h1>Кабінет клієнта</h1>
+    <p class="subtitle">Тут відображаються ваші бронювання у фотостудії LUMINA.STUDIO.</p>
+  </div>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>Мої бронювання</h2>
+      <button class="refresh-btn" id="refreshBtn">Оновити</button>
+    </div>
+
+    <!-- Підсумкові картки -->
+    <div class="summary-cards" id="summaryCards" style="display:none;">
+      <div class="summary-card">
+        <div class="summary-card-value" id="sumTotal">0</div>
+        <div class="summary-card-label">Всього бронювань</div>
+      </div>
+      <div class="summary-card blue">
+        <div class="summary-card-value" id="sumAmount">0 грн</div>
+        <div class="summary-card-label">Загальна сума послуг</div>
+      </div>
+      <div class="summary-card green">
+        <div class="summary-card-value" id="sumPaid">0 грн</div>
+        <div class="summary-card-label">Оплачено</div>
+      </div>
+      <div class="summary-card red" id="sumDueCard">
+        <div class="summary-card-value" id="sumDue">0 грн</div>
+        <div class="summary-card-label">До сплати</div>
+      </div>
+    </div>
+
+
+
+    <div id="bookingsBlock">Завантаження...</div>
+  </section>
+</main>
+
+<script src="/js/auth-session.js"></script>
+<script src="/js/site-dialogs.js"></script>
+<script src="/js/client-panel.js"></script>
+
+  <script src="/js/hall-select-cleanup.js"></script>
+  <script src="/js/client-stats-list.js"></script>
+</body>
+</html>

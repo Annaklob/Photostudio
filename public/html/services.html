@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Послуги | LUMINA.STUDIO</title>
+
+    <link rel="stylesheet" href="/css/services.css">
+
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">LUMINA.STUDIO</a>
+      <nav class="nav" id="mainNav">
+        <a href="index.html">Головна</a>
+        <a href="services.html" class="active">Послуги</a>
+        <a href="halls.html">Зали</a>
+        <a href="photographers.html">Фотографи</a>
+        <a href="contacts.html">Контакти</a>
+        <!-- Кабінет / Увійти — рендериться через JS -->
+        <a href="login.html" id="navAuthLink">Увійти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-overlay">
+        <div class="hero-buttons">
+          <a href="#main-services" class="hero-btn">Основні послуги</a>
+          <a href="#extra-services" class="hero-btn">Додаткові послуги</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="main-services">
+      <div class="container">
+        <h2 class="section-title">Основні послуги</h2>
+        <div class="slider-wrap">
+          <div class="slider-controls">
+            <button class="slider-btn" id="prevBtn" type="button">‹</button>
+            <button class="slider-btn" id="nextBtn" type="button">›</button>
+          </div>
+          <div class="slider-viewport" id="servicesViewport">
+            <div class="slider-track" id="servicesTrack">
+              <div style="display:flex;gap:28px;width:100%;">
+                <div style="flex:0 0 calc((100% - 56px)/3);height:420px;" class="skeleton"></div>
+                <div style="flex:0 0 calc((100% - 56px)/3);height:420px;" class="skeleton"></div>
+                <div style="flex:0 0 calc((100% - 56px)/3);height:420px;" class="skeleton"></div>
+              </div>
+            </div>
+          </div>
+          <div class="slider-hint">Гортай вправо кнопками або затисни Shift і прокрути колесо мишки.</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="extra-services">
+      <div class="container">
+        <h2 class="extra-title">Додаткові послуги</h2>
+        <div id="extraServicesGrid" class="extra-grid">
+          <div class="extra-loading">Завантаження...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-content">
+        <h2 class="cta-title">Готові до своєї фотосесії?</h2>
+        <p class="cta-text">Оберіть послугу, зал і зручний час — ми допоможемо створити кадри, до яких захочеться повертатися.</p>
+        <a href="#" class="cta-btn open-booking">Забронювати фотосесію</a>
+      </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+      <div class="container">
+        <div class="contacts-inner">
+          <h2 class="contacts-title">Контакти</h2>
+          <div class="contact-list">
+            <div class="contact-item"><span class="contact-label">Телефон</span>+380 67 123 45 67</div>
+            <div class="contact-item"><span class="contact-label">Графік роботи</span>09:00–20:00</div>
+            <div class="contact-item"><span class="contact-label">Email</span>lumina.studio@gmail.com</div>
+            <div class="contact-item"><span class="contact-label">Адреса</span>м. Львів, вул. Варшавська, 115</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">© 2026 LUMINA.STUDIO. Усі права захищені.</footer>
+
+  <!-- МОДАЛКА БРОНЮВАННЯ -->
+  <div class="booking-modal" id="bookingModal">
+    <div class="booking-overlay" id="bookingOverlay"></div>
+    <div class="booking-box">
+      <button class="booking-close" id="bookingClose" type="button">×</button>
+      <h2>Забронювати фотосесію</h2>
+      <p class="booking-subtitle">Заповніть форму, і ми зв'яжемося з вами для підтвердження бронювання.</p>
+      <form id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="clientName">Ваше ім'я</label>
+            <input type="text" id="clientName" name="clientName" placeholder="Введіть ім'я" required>
+          </div>
+          <div class="form-group">
+            <label for="clientPhone">Телефон</label>
+            <input type="tel" id="clientPhone" name="clientPhone" placeholder="+380..." required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="clientEmail">Email</label>
+            <input type="email" id="clientEmail" name="clientEmail" placeholder="example@gmail.com">
+          </div>
+          <div class="form-group">
+            <label for="clientInstagram">Instagram</label>
+            <input type="text" id="clientInstagram" name="clientInstagram" placeholder="@username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Основна послуга</label>
+          <select id="service" name="service" required>
+            <option value="">Завантаження послуг...</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Додаткові послуги</label>
+          <div class="additional-services" id="additionalServicesForm">
+            <span style="color:#999;font-size:14px;">Завантаження...</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hall">Зал</label>
+            <select id="hall" name="hall">
+              <option value="">Завантаження залів...</option>
+            </select>
+          </div>
+          <div class="form-group" id="photographerGroup">
+            <label for="photographer">Фотограф</label>
+            <select id="photographer" name="photographer">
+              <option value="">Завантаження фотографів...</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookingDate">Дата</label>
+            <input type="date" id="bookingDate" name="bookingDate" required>
+            <div class="dates-hint" id="dateHint"></div>
+          </div>
+          <div class="form-group">
+            <label for="bookingTime">Час</label>
+            <select id="bookingTime" name="bookingTime" required>
+              <option value="">Спочатку оберіть послугу, дату і фотографа</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Коментар</label>
+          <textarea id="message" name="message" placeholder="Опишіть бажаний формат зйомки, кількість людей або інші деталі"></textarea>
+        </div>
+
+        <div class="form-error" id="bookingError"></div>
+        <button type="submit" class="booking-submit" id="bookingSubmitBtn">Надіслати заявку</button>
+
+        <div class="booking-phone-block">
+          <div class="booking-or">або</div>
+          <button type="button" class="callback-btn" id="openCallbackForm">
+            <span class="phone-icon">☎</span> Передзвоніть мені
+          </button>
+          <p class="callback-note">хочу записатися по телефону</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛКА CALLBACK -->
+  <div class="callback-modal" id="callbackModal">
+    <div class="callback-overlay" id="callbackOverlay"></div>
+    <div class="callback-box">
+      <button class="callback-close" id="callbackClose" type="button">×</button>
+      <h2>Передзвоніть мені</h2>
+      <p>Залиште ім'я та номер телефону, і ми зв'яжемося з вами найближчим часом.</p>
+      <form id="callbackForm">
+        <div class="form-group">
+          <label for="callbackName">Ваше ім'я</label>
+          <input type="text" id="callbackName" name="callbackName" placeholder="Введіть ім'я" required>
+        </div>
+        <div class="form-group">
+          <label for="callbackPhone">Телефон</label>
+          <input type="tel" id="callbackPhone" name="callbackPhone" placeholder="+380..." required>
+        </div>
+        <div class="form-error" id="callbackError"></div>
+        <button type="submit" class="booking-submit">Надіслати запит</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- УСПІХ -->
+  <div class="success-modal" id="successModal">
+    <div class="success-overlay" id="successOverlay"></div>
+    <div class="success-box">
+      <div class="success-icon">✓</div>
+      <h2>Дякуємо!</h2>
+      <p id="successMessage">Ми зв'яжемося з вами найближчим часом.</p>
+      <button type="button" class="success-btn" id="successOk">Добре</button>
+    </div>
+  </div>
+
+  <script src="/js/auth-session.js"></script>
+<script src="/js/site-dialogs.js"></script>
+<script src="/js/booking-catalog.js"></script>
+<script src="/js/services.js"></script>
+<script src="/js/booking-photographers.js"></script>
+<script src="/js/booking-dates.js"></script>
+
+  <script src="/js/common-nav.js"></script>
+  <script src="/js/hall-select-cleanup.js"></script>
+</body>
+</html>

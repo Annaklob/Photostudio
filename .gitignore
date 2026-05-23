@@ -1,0 +1,26 @@
+node_modules/
+.env
+.env.*
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# локальні резервні копії
+*.bak
+*.broken
+*.before-*
+*.booking-prices.bak
+*.water-hall.bak
+*.header.bak
+
+# архіви
+*.zip
+*.rar
+*.7z
+PHOTOSTUDIO-BACKEND.zip
+
+# локальні папки
+_local_backups/
+_backup/
+cleanup-before-github.sh

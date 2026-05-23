@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Кабінет фотографа | LUMINA.STUDIO</title>
+
+    <link rel="stylesheet" href="/css/photographer-panel.css">
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="logo">LUMINA.STUDIO</div>
+
+    <div class="header-actions">
+      <div class="user-info" id="userInfo">Фотограф</div>
+      <a href="index.html" class="home-link">На сайт</a>
+      <button class="logout-btn" id="logoutBtn" type="button">Вийти</button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="top-block">
+      <h1>Кабінет фотографа</h1>
+      <p class="subtitle">Тут відображаються бронювання, призначені саме цьому фотографу.</p>
+    </div>
+
+    <section class="section">
+      <div class="section-header">
+        <h2>Мої зйомки</h2>
+        <button class="refresh-btn" id="refreshBtn" type="button">Оновити</button>
+      </div>
+
+      <div id="bookingsBlock">Завантаження...</div>
+    </section>
+  </main>
+
+  <script src="/js/auth-session.js"></script>
+<script src="/js/site-dialogs.js"></script>
+<script src="/js/photographer-panel.js"></script>
+
+
+  <script src="/js/hall-select-cleanup.js"></script>
+</body>
+</html>

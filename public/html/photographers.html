@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Фотографи | LUMINA.STUDIO</title>
+
+    <link rel="stylesheet" href="/css/photographers.css">
+
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo">LUMINA.STUDIO</a>
+
+      <nav class="nav">
+        <a href="index.html">Головна</a>
+        <a href="services.html">Послуги</a>
+        <a href="halls.html">Зали</a>
+        <a href="photographers.html" class="active">Фотографи</a>
+        <a href="contacts.html">Контакти</a>
+        <a href="login.html" id="navAuthLink">Увійти</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="photographers-hero parallax" id="home">
+      <a href="#photographers" class="btn btn-primary">Обрати фотографа</a>
+    </section>
+
+    <section class="photographers-section" id="photographers">
+      <div class="container">
+
+        <div class="section-title">
+          <h1>Обрати фотографа</h1>
+          <p>
+            Кожен фотограф LUMINA.STUDIO має власний стиль, досвід і напрям роботи.
+            Оберіть спеціаліста, який найкраще підходить саме для вашої зйомки.
+          </p>
+        </div>
+
+        <div class="photographers-list">
+          <div class="photographers-loading">
+            Завантаження фотографів...
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="cta parallax" id="cta">
+      <div class="container cta-content">
+        <h2 class="cta-title">Готові до своєї фотосесії?</h2>
+        <p class="cta-text">
+          Оберіть фотографа, зал і зручний час — ми допоможемо створити кадри,
+          до яких захочеться повертатися.
+        </p>
+        <a href="#" class="btn btn-primary open-booking">Забронювати фотосесію</a>
+      </div>
+    </section>
+
+    <section class="contacts" id="contacts">
+      <div class="container">
+        <div class="contacts-inner">
+          <h2 class="contacts-title">Контакти</h2>
+
+          <div class="contact-list">
+            <div class="contact-item">
+              <span class="contact-label">Телефон</span>
+              +380 67 123 45 67
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Графік роботи</span>
+              09:00-20:00
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Email</span>
+              lumina.studio@gmail.com
+            </div>
+
+            <div class="contact-item">
+              <span class="contact-label">Адреса</span>
+              м. Львів, вул. Варшавська, 115
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    © 2026 LUMINA.STUDIO. Усі права захищені.
+  </footer>
+
+  <div class="booking-modal" id="bookingModal">
+    <div class="booking-overlay" id="bookingOverlay"></div>
+
+    <div class="booking-box">
+      <button class="booking-close" id="bookingClose" type="button">×</button>
+
+      <h2>Забронювати фотосесію</h2>
+      <p class="booking-subtitle">
+        Заповніть форму, і ми зв’яжемося з вами для підтвердження бронювання.
+      </p>
+
+      <form id="bookingForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="clientName">Ваше ім’я</label>
+            <input type="text" id="clientName" name="clientName" placeholder="Введіть ім’я" required>
+          </div>
+
+          <div class="form-group">
+            <label for="clientPhone">Телефон</label>
+            <input type="tel" id="clientPhone" name="clientPhone" placeholder="+380..." required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="clientEmail">Email</label>
+            <input type="email" id="clientEmail" name="clientEmail" placeholder="example@gmail.com">
+          </div>
+
+          <div class="form-group">
+            <label for="clientInstagram">Instagram</label>
+            <input type="text" id="clientInstagram" name="clientInstagram" placeholder="@username">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service">Основна послуга</label>
+          <select id="service" name="service" required>
+            <option value="">Оберіть основну послугу</option>
+            <option value="Портретна фотосесія">Портретна фотосесія — 2500 грн / 60 хв</option>
+            <option value="Індивідуальна студійна фотосесія">Індивідуальна студійна фотосесія — 2800 грн / 60 хв</option>
+            <option value="Сімейна фотосесія">Сімейна фотосесія — 3500 грн / 90 хв</option>
+            <option value="Дитяча фотосесія">Дитяча фотосесія — 3000 грн / 60 хв</option>
+            <option value="Love Story фотосесія">Love Story фотосесія — 3200 грн / 90 хв</option>
+            <option value="Весільна фотозйомка">Весільна фотозйомка — 10000 грн / 480 хв</option>
+            <option value="Фотосесія вагітності">Фотосесія вагітності — 3000 грн / 60 хв</option>
+            <option value="Newborn-фотосесія">Newborn-фотосесія — 4000 грн / 120 хв</option>
+            <option value="Предметна фотозйомка">Предметна фотозйомка — 2500 грн / 60 хв</option>
+            <option value="Контент-зйомка для брендів">Контент-зйомка для брендів — 5000 грн / 120 хв</option>
+            <option value="Каталожна фотозйомка">Каталожна фотозйомка — 4500 грн / 120 хв</option>
+            <option value="Виїзна фотосесія в межах міста">Виїзна фотосесія в межах міста — 3500 грн / 90 хв</option>
+            <option value="Виїзна фотосесія за межами міста">Виїзна фотосесія за межами міста — 5000 грн / 120 хв</option>
+            <option value="Репортажна зйомка подій">Репортажна зйомка подій — 6000 грн / 180 хв</option>
+            <option value="Погодинна оренда залу">Погодинна оренда залу — 1000 грн / 60 хв</option>
+            <option value="Оренда залу для стороннього фотографа">Оренда залу для стороннього фотографа — 1200 грн / 60 хв</option>
+            <option value="Аерозйомка" disabled>Аерозйомка — тимчасово недоступна</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Додаткові послуги</label>
+
+          <div class="additional-services">
+            <label><input type="checkbox" name="additionalServices[]" value="Оренда додаткового світла"> Оренда додаткового світла — 500 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Оренда реквізиту"> Оренда реквізиту — 400 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Макіяж перед фотосесією"> Макіяж перед фотосесією — 800 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Зачіска перед фотосесією"> Зачіска перед фотосесією — 700 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Послуги стиліста"> Послуги стиліста — 1000 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Професійна ретуш фотографій"> Професійна ретуш фотографій — 1000 грн</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Термінова обробка фото"> Термінова обробка фото — 1200 грн</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Друк фотографій"> Друк фотографій — 300 грн</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Створення фотокниги"> Створення фотокниги — 2500 грн</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Бекстейдж-відео"> Бекстейдж-відео — 1500 грн / 60 хв</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Підбір локації для виїзної зйомки"> Підбір локації для виїзної зйомки — 600 грн</label>
+            <label><input type="checkbox" name="additionalServices[]" value="Додаткові фото в обробці"> Додаткові фото в обробці — 500 грн</label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="hall">Зал</label>
+            <select id="hall" name="hall">
+              <option value="">Оберіть зал</option>
+              <option>Світлий зал</option>
+              <option>Темний зал</option>
+              <option>Водний зал</option>
+              <option>Без залу / виїзна зйомка</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="photographer">Фотограф</label>
+            <select id="photographer" name="photographer">
+              <option value="">Оберіть фотографа</option>
+              <option>Анна Мельник</option>
+              <option>Олена Коваль</option>
+              <option>Марія Бондар</option>
+              <option>Ірина Савчук</option>
+              <option>Наталія Шевчик</option>
+              <option>Софія Дорош</option>
+              <option>Вікторія Гнатюк</option>
+              <option>Христина Левчук</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bookingDate">Дата</label>
+            <input type="date" id="bookingDate" name="bookingDate" required>
+          </div>
+
+          <div class="form-group">
+            <label for="bookingTime">Час</label>
+            <select id="bookingTime" name="bookingTime" required>
+              <option value="">Спочатку оберіть послугу, дату і фотографа</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Коментар</label>
+          <textarea id="message" name="message" placeholder="Опишіть бажаний формат зйомки, кількість людей або інші деталі"></textarea>
+        </div>
+
+        <div class="form-error" id="bookingError"></div>
+
+        <button type="submit" class="booking-submit">Надіслати заявку</button>
+
+        <div class="booking-phone-block">
+          <div class="booking-or">або</div>
+
+          <button type="button" class="callback-btn" id="openCallbackForm">
+            <span class="phone-icon">☎</span>
+            Передзвоніть мені
+          </button>
+
+          <p class="callback-note">хочу записатися по телефону</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="callback-modal" id="callbackModal">
+    <div class="callback-overlay" id="callbackOverlay"></div>
+
+    <div class="callback-box">
+      <button class="callback-close" id="callbackClose" type="button">×</button>
+
+      <h2>Передзвоніть мені</h2>
+      <p>
+        Залиште ім’я та номер телефону, і ми зв’яжемося з вами найближчим часом.
+      </p>
+
+      <form id="callbackForm">
+        <div class="form-group">
+          <label for="callbackName">Ваше ім’я</label>
+          <input type="text" id="callbackName" name="callbackName" placeholder="Введіть ім’я" required>
+        </div>
+
+        <div class="form-group">
+          <label for="callbackPhone">Телефон</label>
+          <input type="tel" id="callbackPhone" name="callbackPhone" placeholder="+380..." required>
+        </div>
+
+        <div class="form-error" id="callbackError"></div>
+
+        <button type="submit" class="booking-submit">Надіслати запит</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="success-modal" id="successModal">
+    <div class="success-overlay" id="successOverlay"></div>
+
+    <div class="success-box">
+      <div class="success-icon">✓</div>
+      <h2>Дякуємо!</h2>
+      <p id="successMessage">Ми зв’яжемося з вами найближчим часом.</p>
+      <button type="button" class="success-btn" id="successOk">Добре</button>
+    </div>
+  </div>
+
+  <script src="/js/auth-session.js"></script>
+<script src="/js/site-dialogs.js"></script>
+<script src="/js/booking-catalog.js"></script>
+<script src="/js/photographers.js"></script>
+<script src="/js/booking-photographers.js"></script>
+<script src="/js/booking-dates.js"></script>
+
+
+  <script src="/js/common-nav.js"></script>
+  <script src="/js/hall-select-cleanup.js"></script>
+</body>
+</html>

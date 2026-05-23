@@ -1,0 +1,314 @@
+:root {
+      --dark: #171717;
+      --light: #f5f3f1;
+      --soft: #ece7e2;
+      --accent: #DE4337;
+      --text: #1f1f1f;
+      --white: #ffffff;
+      --border: #d8d2cd;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Inter, Arial, sans-serif; background: var(--light); color: var(--text); line-height: 1.5; }
+    .header { background: var(--dark); color: var(--white); padding: 24px 40px; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .logo { font-size: 20px; font-weight: 700; letter-spacing: 0.22em; }
+    .header-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .user-info { font-size: 15px; color: rgba(255,255,255,0.88); }
+    .logout-btn, .home-link { border: 1px solid rgba(255,255,255,0.25); background: transparent; color: var(--white); padding: 10px 16px; border-radius: 8px; cursor: pointer; text-decoration: none; font-size: 14px; transition: 0.25s; }
+    .logout-btn:hover, .home-link:hover { background: var(--accent); border-color: var(--accent); }
+    .page { width: min(1400px, calc(100% - 48px)); margin: 0 auto; padding: 44px 0 70px; }
+    .top-block { margin-bottom: 34px; }
+    h1 { font-size: 42px; margin-bottom: 8px; }
+    .subtitle { font-size: 17px; color: #666; }
+    .section { background: var(--white); border-radius: 18px; padding: 28px; box-shadow: 0 12px 40px rgba(0,0,0,0.06); margin-bottom: 28px; }
+    .section-header { display: flex; justify-content: space-between; gap: 18px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; }
+    h2 { font-size: 28px; }
+    .refresh-btn { border: none; background: var(--dark); color: var(--white); padding: 12px 22px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: 600; transition: 0.25s; }
+    .refresh-btn:hover { background: var(--accent); }
+    /* Підсумок */
+    .summary-cards { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 28px; }
+    .summary-card { background: var(--soft); border-radius: 14px; padding: 20px 26px; min-width: 160px; flex: 1; }
+    .summary-card-value { font-size: 26px; font-weight: 700; }
+    .summary-card-label { font-size: 13px; color: #777; margin-top: 4px; }
+    .summary-card.green .summary-card-value { color: #1f6f2a; }
+    .summary-card.red   .summary-card-value { color: #8a342c; }
+    .summary-card.blue  .summary-card-value { color: #184e91; }
+    /* Таблиця */
+    .table-wrap { width: 100%; overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+    table { width: 100%; border-collapse: collapse; min-width: 1050px; background: var(--white); }
+    th, td { padding: 14px 16px; border-bottom: 1px solid var(--border); text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: var(--soft); font-weight: 700; white-space: nowrap; }
+    tr:last-child td { border-bottom: none; }
+    .status { display: inline-block; padding: 5px 10px; border-radius: 999px; font-size: 13px; font-weight: 700; }
+    .status.new       { background: #f1e4df; color: #8a342c; }
+    .status.confirmed { background: #e9f7e8; color: #1f6f2a; }
+    .status.paid      { background: #e8f1ff; color: #184e91; }
+    .status.completed { background: #ece7e2; color: #4a403b; }
+    .status.cancelled { background: #ffe8e5; color: #8a1f15; }
+    .payment-info { white-space: nowrap; }
+    .payment-info .total   { font-weight: 700; }
+    .payment-info .paid    { color: #1f6f2a; font-size: 13px; margin-top: 3px; }
+    .payment-info .due     { font-size: 13px; margin-top: 2px; }
+    .payment-info .due.positive { color: #8a342c; font-weight: 700; }
+    .payment-info .due.zero     { color: #1f6f2a; }
+    .payment-badge { display: inline-block; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: 700; margin-top: 6px; }
+    .payment-badge.unpaid  { background: #fff3cd; color: #856404; }
+    .payment-badge.partial { background: #fff0e6; color: #854400; }
+    .payment-badge.paid    { background: #e8f1ff; color: #184e91; }
+    .empty, .error { padding: 24px; border-radius: 12px; background: var(--soft); color: #5d5652; font-size: 16px; }
+    .error { background: #ffe8e5; color: #8a1f15; }
+    .hint { margin-top: 18px; padding: 18px; border-radius: 12px; background: var(--soft); color: #5d5652; font-size: 15px; line-height: 1.6; }
+    .service-main  { font-weight: 700; margin-bottom: 4px; }
+    .service-extra { color: #6d625d; font-size: 13px; line-height: 1.45; }
+    .cancel-btn { border: none; background: #ffe8e5; color: #8a1f15; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: 0.2s; white-space: nowrap; }
+    .cancel-btn:hover { background: var(--accent); color: var(--white); }
+
+    @media (max-width: 768px) {
+      .header { padding: 22px; }
+      .page { width: min(100% - 28px, 1400px); padding-top: 32px; }
+      h1 { font-size: 34px; }
+      .section { padding: 20px; }
+      .summary-cards { gap: 12px; }
+      .summary-card { min-width: 120px; padding: 16px 18px; }
+    }
+
+
+/* ── КАБІНЕТ КЛІЄНТА: ПОКАЗНИКИ СПИСКОМ ── */
+.client-stats-list-style,
+.client-stats-list-style * {
+  box-sizing: border-box;
+}
+
+/* Контейнер з 4 показниками */
+.client-stats,
+.client-summary,
+.client-summary-grid,
+.summary-grid,
+.stats-grid,
+.booking-stats,
+.bookings-stats,
+.dashboard-stats {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  margin: 24px 0 28px !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Одна позиція показника */
+.client-stats .stat-card,
+.client-summary .stat-card,
+.client-summary-grid .stat-card,
+.summary-grid .stat-card,
+.stats-grid .stat-card,
+.booking-stats .stat-card,
+.bookings-stats .stat-card,
+.dashboard-stats .stat-card,
+.client-stats .summary-card,
+.client-summary .summary-card,
+.client-summary-grid .summary-card,
+.summary-grid .summary-card,
+.stats-grid .summary-card,
+.booking-stats .summary-card,
+.bookings-stats .summary-card,
+.dashboard-stats .summary-card,
+.client-stats > div,
+.client-summary > div,
+.client-summary-grid > div,
+.summary-grid > div,
+.stats-grid > div,
+.booking-stats > div,
+.bookings-stats > div,
+.dashboard-stats > div {
+  width: 100% !important;
+  min-height: auto !important;
+  padding: 20px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid #e9e2dc !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-rows: auto auto !important;
+  column-gap: 28px !important;
+  row-gap: 6px !important;
+  align-items: center !important;
+}
+
+.client-stats > div:last-child,
+.client-summary > div:last-child,
+.client-summary-grid > div:last-child,
+.summary-grid > div:last-child,
+.stats-grid > div:last-child,
+.booking-stats > div:last-child,
+.bookings-stats > div:last-child,
+.dashboard-stats > div:last-child {
+  border-bottom: none !important;
+}
+
+/* Значення показника */
+.client-stats .stat-value,
+.client-summary .stat-value,
+.client-summary-grid .stat-value,
+.summary-grid .stat-value,
+.stats-grid .stat-value,
+.booking-stats .stat-value,
+.bookings-stats .stat-value,
+.dashboard-stats .stat-value,
+.client-stats strong,
+.client-summary strong,
+.client-summary-grid strong,
+.summary-grid strong,
+.stats-grid strong,
+.booking-stats strong,
+.bookings-stats strong,
+.dashboard-stats strong,
+.client-stats > div > :first-child,
+.client-summary > div > :first-child,
+.client-summary-grid > div > :first-child,
+.summary-grid > div > :first-child,
+.stats-grid > div > :first-child,
+.booking-stats > div > :first-child,
+.bookings-stats > div > :first-child,
+.dashboard-stats > div > :first-child {
+  grid-column: 2 !important;
+  grid-row: 1 / span 2 !important;
+  color: #1f1f1f !important;
+  font-size: 28px !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  text-align: right !important;
+  white-space: normal !important;
+  margin: 0 !important;
+}
+
+/* Назва показника */
+.client-stats .stat-label,
+.client-summary .stat-label,
+.client-summary-grid .stat-label,
+.summary-grid .stat-label,
+.stats-grid .stat-label,
+.booking-stats .stat-label,
+.bookings-stats .stat-label,
+.dashboard-stats .stat-label,
+.client-stats p,
+.client-summary p,
+.client-summary-grid p,
+.summary-grid p,
+.stats-grid p,
+.booking-stats p,
+.bookings-stats p,
+.dashboard-stats p,
+.client-stats span,
+.client-summary span,
+.client-summary-grid span,
+.summary-grid span,
+.stats-grid span,
+.booking-stats span,
+.bookings-stats span,
+.dashboard-stats span {
+  grid-column: 1 !important;
+  color: #777 !important;
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+}
+
+/* Якщо назва йде після числа — ставимо її ліворуч */
+.client-stats > div > :last-child,
+.client-summary > div > :last-child,
+.client-summary-grid > div > :last-child,
+.summary-grid > div > :last-child,
+.stats-grid > div > :last-child,
+.booking-stats > div > :last-child,
+.bookings-stats > div > :last-child,
+.dashboard-stats > div > :last-child {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  color: #777 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Прибираємо кольори зі сум */
+.client-stats .blue,
+.client-stats .green,
+.client-stats .red,
+.client-summary .blue,
+.client-summary .green,
+.client-summary .red,
+.summary-grid .blue,
+.summary-grid .green,
+.summary-grid .red,
+.stats-grid .blue,
+.stats-grid .green,
+.stats-grid .red {
+  color: #1f1f1f !important;
+}
+
+/* Мобільна версія */
+@media (max-width: 760px) {
+  .client-stats .stat-card,
+  .client-summary .stat-card,
+  .client-summary-grid .stat-card,
+  .summary-grid .stat-card,
+  .stats-grid .stat-card,
+  .booking-stats .stat-card,
+  .bookings-stats .stat-card,
+  .dashboard-stats .stat-card,
+  .client-stats .summary-card,
+  .client-summary .summary-card,
+  .client-summary-grid .summary-card,
+  .summary-grid .summary-card,
+  .stats-grid .summary-card,
+  .booking-stats .summary-card,
+  .bookings-stats .summary-card,
+  .dashboard-stats .summary-card,
+  .client-stats > div,
+  .client-summary > div,
+  .client-summary-grid > div,
+  .summary-grid > div,
+  .stats-grid > div,
+  .booking-stats > div,
+  .bookings-stats > div,
+  .dashboard-stats > div {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto auto !important;
+    row-gap: 8px !important;
+  }
+
+  .client-stats .stat-value,
+  .client-summary .stat-value,
+  .client-summary-grid .stat-value,
+  .summary-grid .stat-value,
+  .stats-grid .stat-value,
+  .booking-stats .stat-value,
+  .bookings-stats .stat-value,
+  .dashboard-stats .stat-value,
+  .client-stats strong,
+  .client-summary strong,
+  .client-summary-grid strong,
+  .summary-grid strong,
+  .stats-grid strong,
+  .booking-stats strong,
+  .bookings-stats strong,
+  .dashboard-stats strong,
+  .client-stats > div > :first-child,
+  .client-summary > div > :first-child,
+  .client-summary-grid > div > :first-child,
+  .summary-grid > div > :first-child,
+  .stats-grid > div > :first-child,
+  .booking-stats > div > :first-child,
+  .bookings-stats > div > :first-child,
+  .dashboard-stats > div > :first-child {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    text-align: left !important;
+    font-size: 26px !important;
+  }
+}

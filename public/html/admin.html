@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Адмін-панель | LUMINA.STUDIO</title>
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+<body class="admin-right-actions-layout">
+
+<header class="header">
+  <div class="logo">LUMINA.STUDIO</div>
+
+  <div class="header-actions">
+    <span class="user-info" id="userInfo">Адміністратор</span>
+    <a class="home-link" href="index.html">На сайт</a>
+    <button class="logout-btn" id="logoutBtn">Вийти</button>
+  </div>
+</header>
+
+<aside class="admin-quick-panel">
+  <div class="quick-panel-heading">
+    <span>Швидкі дії</span>
+  </div>
+
+  <div class="quick-actions-group">
+    <a class="quick-link" href="#statsSection">Показники</a>
+    <button class="quick-action" id="openCreateBtn" type="button">
+      Створити бронювання
+    </button>
+
+    <button class="quick-action" id="openServicesBtn" type="button">
+      Послуги
+    </button>
+
+    <button class="quick-action" id="openPhotographersBtn" type="button">
+      Фотографи
+    </button>
+
+    <button class="quick-action" id="openScheduleBtn" type="button">
+      Графік фотографів
+    </button>
+
+    <button class="quick-action" id="refreshBtn" type="button">
+      Оновити дані
+    </button>
+  </div>
+
+  <div class="quick-panel-heading second">
+    <span>Перейти до</span>
+  </div>
+
+  <div class="quick-actions-group">
+    <a class="quick-link" href="#bookingsSection">Бронювання</a>
+    <a class="quick-link" href="#clientsSection">Клієнти</a>
+    <a class="quick-link" href="#callbacksSection">Заявки</a>
+  </div>
+</aside>
+
+
+
+<main class="page">
+  <div class="top-block">
+    <div>
+      <h1>Адмін-панель</h1>
+      <p class="subtitle">Створення, перегляд, редагування, скасування та видалення заявок.</p>
+    </div>
+</div>
+
+  <!-- ══ ДОХІД СТУДІЇ ══ -->
+  <div class="revenue-block" id="revenueBlock">
+    <div class="revenue-card">
+      <div class="revenue-label">Загальний дохід (оплачено)</div>
+      <div class="revenue-value" id="revTotal">—</div>
+      <div class="revenue-sub">з усіх оплачених бронювань</div>
+    </div>
+    <div class="revenue-card green">
+      <div class="revenue-label">Поточний місяць</div>
+      <div class="revenue-value" id="revMonth">—</div>
+      <div class="revenue-sub" id="revMonthLabel">оплачено у цьому місяці</div>
+    </div>
+    <div class="revenue-card blue">
+      <div class="revenue-label">Очікується (підтверджено)</div>
+      <div class="revenue-value" id="revPending">—</div>
+      <div class="revenue-sub">підтверджені, ще не оплачені</div>
+    </div>
+    <div class="revenue-card" style="border-left-color:#856404;">
+      <div class="revenue-label">Всього бронювань</div>
+      <div class="revenue-value" id="revBookings">—</div>
+      <div class="revenue-sub">не враховуючи скасовані</div>
+    </div>
+  </div>
+
+  <!-- ══ ПОШУК КЛІЄНТА ══ -->
+  <section class="section" id="clientsSection">
+    <div class="section-header"><h2>Пошук клієнта</h2></div>
+    <div class="client-search-wrap">
+      <input type="text" id="globalClientSearch"
+        placeholder="Введіть ім'я, прізвище, телефон або email клієнта..."
+        onkeydown="if(event.key==='Enter') searchClientBookings()">
+      <button class="btn-primary" onclick="searchClientBookings()">Знайти</button>
+    </div>
+    <div id="clientSearchResult"></div>
+  </section>
+
+  <!-- ══ БРОНЮВАННЯ ══ -->
+  <section class="section" id="bookingsSection">
+    <div class="section-header">
+      <h2>Бронювання</h2>
+      <span class="count" id="bookingsCount">0 заявок</span>
+    </div>
+
+    <!-- Фільтри за датою створення -->
+    <div class="filters-bar">
+      <label>Фільтр за датою створення:</label>
+      <button class="filter-btn active" id="filterAll" onclick="applyFilter('all')">Всі</button>
+      <button class="filter-btn" id="filterToday" onclick="applyFilter('today')">Сьогодні</button>
+      <button class="filter-btn" id="filterYesterday" onclick="applyFilter('yesterday')">Вчора</button>
+      <div class="filter-date-range">
+        <span class="filter-sep">або:</span>
+        <input type="date" id="filterDateFrom" placeholder="Від">
+        <span class="filter-sep">—</span>
+        <input type="date" id="filterDateTo" placeholder="До">
+        <button class="filter-apply-btn" onclick="applyFilter('range')">Застосувати</button>
+        <button class="filter-reset-btn" onclick="applyFilter('all')">✕ Скинути</button>
+      </div>
+    </div>
+
+    <div id="bookingsBlock">Завантаження...</div>
+  </section>
+
+  <!-- ══ CALLBACKS ══ -->
+  <section class="section" id="callbacksSection">
+    <div class="section-header">
+      <h2>Передзвоніть мені</h2>
+      <span class="count" id="callbacksCount">0 заявок</span>
+    </div>
+    <div id="callbacksBlock">Завантаження...</div>
+  </section>
+</main>
+
+<!-- ══════════════════════════════════
+     МОДАЛКА ПОСЛУГ
+══════════════════════════════════ -->
+<div class="modal" id="servicesModal">
+  <div class="modal-overlay" id="servicesOverlay"></div>
+  <div class="modal-box modal-box-wide">
+    <button class="modal-close" onclick="document.getElementById('servicesModal').classList.remove('active')" type="button">×</button>
+    <h2 class="modal-title">Управління послугами</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchServicesTab('list', this)">Список послуг</button>
+      <button class="tab-btn" onclick="switchServicesTab('add', this)">+ Додати послугу</button>
+    </div>
+    <div id="servicesListTab"><div class="empty">Завантаження...</div></div>
+    <div id="servicesAddTab" style="display:none;">
+      <div class="service-form-grid">
+        <div class="form-group">
+          <label>Назва послуги</label>
+          <input type="text" id="newServiceName" placeholder="Назва послуги">
+        </div>
+        <div class="form-group">
+          <label>Ціна (грн)</label>
+          <input type="number" id="newServicePrice" min="0" placeholder="2500">
+        </div>
+        <div class="form-group">
+          <label>Тривалість (хвилин)</label>
+          <input type="number" id="newServiceDuration" min="0" placeholder="60">
+        </div>
+        <div class="form-group">
+          <label>Категорія</label>
+          <select id="newServiceCategory">
+            <option value="main">Основна</option>
+            <option value="additional">Додаткова</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Опис (необов'язково)</label>
+        <textarea id="newServiceDesc" placeholder="Опис послуги"></textarea>
+      </div>
+        <div class="form-group">
+          <label>Фото послуги</label>
+          <textarea id="newServiceImages" placeholder="Вставте посилання або шлях до фото. Кожне фото з нового рядка.&#10;Наприклад:&#10;/images/services/photo1.jpg&#10;https://site.com/photo2.jpg"></textarea>
+          <div class="field-hint">Можна вставити кілька фото. Перше буде основним, інші — для ефекту при наведенні.</div>
+        </div>
+      <div id="addServiceMsg" class="form-message"></div>
+      <button class="save-btn" onclick="addService()">Додати послугу</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     МОДАЛКА ФОТОГРАФІВ
+══════════════════════════════════ -->
+<div class="modal" id="photographersModal">
+  <div class="modal-overlay" id="photographersOverlay"></div>
+  <div class="modal-box modal-box-wide">
+    <button class="modal-close" onclick="document.getElementById('photographersModal').classList.remove('active')" type="button">×</button>
+    <h2 class="modal-title">Управління фотографами</h2>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchPhotographersTab('list', this)">Список фотографів</button>
+      <button class="tab-btn" onclick="switchPhotographersTab('add', this)">+ Додати фотографа</button>
+    </div>
+    <div id="photographersListTab"><div class="empty">Завантаження...</div></div>
+    <div id="photographersAddTab" style="display:none;">
+      <div class="service-form-grid">
+        <div class="form-group">
+          <label>Повне ім'я</label>
+          <input type="text" id="newPhotographerName" placeholder="Ім'я Прізвище">
+        </div>
+        <div class="form-group">
+          <label>Телефон</label>
+          <input type="text" id="newPhotographerPhone" placeholder="+380...">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="newPhotographerEmail" placeholder="photo@gmail.com">
+        </div>
+        <div class="form-group">
+          <label>Пароль для входу</label>
+          <input type="password" id="newPhotographerPassword" placeholder="Мінімум 6 символів">
+        </div>
+        <div class="form-group">
+          <label>Досвід</label>
+          <input type="text" id="newPhotographerExperience" placeholder="5 років досвіду">
+        </div>
+        <div class="form-group">
+          <label>Instagram</label>
+          <input type="text" id="newPhotographerInstagram" placeholder="@username">
+        </div>
+        <div class="form-group">
+          <label>Фото фотографа</label>
+          <input type="url" id="newPhotographerImageUrl" placeholder="https://...jpg">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Біографія (необов'язково)</label>
+        <textarea id="newPhotographerBio" placeholder="Коротко про фотографа"></textarea>
+      </div>
+      <div id="addPhotographerMsg" class="form-message"></div>
+      <button class="save-btn" onclick="addPhotographer()">Додати фотографа</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     МОДАЛКА ГРАФІКУ ФОТОГРАФІВ
+══════════════════════════════════ -->
+<div class="modal" id="scheduleModal">
+  <div class="modal-overlay" id="scheduleOverlay"></div>
+  <div class="modal-box modal-box-xl">
+    <button class="modal-close" onclick="closeScheduleModal()" type="button">×</button>
+    <h2 class="modal-title">📅 Графік фотографів</h2>
+    <p class="modal-subtitle">Перегляд та редагування робочого розкладу фотографів.</p>
+
+    <div class="form-group">
+      <label>Оберіть фотографа</label>
+      <select id="schedulePhotographerSelect" class="schedule-photographer-select" onchange="loadSchedule()">
+        <option value="">— Оберіть фотографа —</option>
+      </select>
+    </div>
+
+    <div id="scheduleContent" style="display:none;">
+      <div class="schedule-week-nav">
+        <button onclick="shiftWeek(-1)">← Попередній тиждень</button>
+        <span class="schedule-week-label" id="scheduleWeekLabel"></span>
+        <button onclick="shiftWeek(1)">Наступний тиждень →</button>
+      </div>
+
+      <!-- Форма додавання слота -->
+      <div class="schedule-add-form" id="scheduleAddForm" style="display:none;">
+        <h4>Налаштувати день: <span id="scheduleAddDateLabel"></span></h4>
+        <input type="hidden" id="scheduleAddDate">
+        <div class="schedule-form-row">
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Тип</label>
+            <select id="scheduleSlotType">
+              <option value="working">Робочий</option>
+              <option value="break">Перерва</option>
+              <option value="blocked">Заблокований</option>
+              <option value="day_off">Вихідний</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Коментар</label>
+            <input type="text" id="scheduleSlotComment" placeholder="Необов'язково">
+          </div>
+        </div>
+        <div class="schedule-form-row" id="scheduleTimeFields">
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Початок</label>
+            <input type="time" id="scheduleSlotStart" value="09:00">
+          </div>
+          <div>
+            <label style="font-size:13px;font-weight:700;display:block;margin-bottom:6px;">Кінець</label>
+            <input type="time" id="scheduleSlotEnd" value="20:00">
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:4px;">
+          <button class="btn-primary" style="flex:1;padding:10px;" onclick="saveScheduleSlot()">Зберегти</button>
+          <button class="btn-outline" style="padding:10px 16px;" onclick="document.getElementById('scheduleAddForm').style.display='none'">Скасувати</button>
+        </div>
+        <div id="scheduleAddMsg" class="form-message" style="margin-top:12px;margin-bottom:0;"></div>
+      </div>
+
+      <div class="schedule-grid" id="scheduleGrid"></div>
+    </div>
+
+    <div id="scheduleEmpty" class="empty">Оберіть фотографа для перегляду графіка.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     МОДАЛКА СТВОРЕННЯ БРОНЮВАННЯ
+══════════════════════════════════ -->
+<div class="modal" id="createModal">
+  <div class="modal-overlay" id="createOverlay"></div>
+  <div class="modal-box">
+    <button class="modal-close" id="createClose" type="button">×</button>
+    <h2 class="modal-title">Створити бронювання</h2>
+    <p class="modal-subtitle">Заповніть дані клієнта після телефонної розмови.</p>
+    <form id="createForm">
+      <div class="form-group client-search-box">
+        <label for="createClientSearch">Знайти існуючого клієнта</label>
+        <input type="text" id="createClientSearch"
+          placeholder="Почніть вводити ім'я, телефон, email або Instagram" autocomplete="off">
+        <div class="client-search-results" id="createClientSearchResults"></div>
+        <div class="client-search-hint" id="createClientSearchHint">
+          Можна знайти клієнта й автоматично підставити його дані у форму.
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="createClientName">Ім'я клієнта *</label>
+          <input type="text" id="createClientName" placeholder="Наприклад: Анна Клоб" required>
+        </div>
+        <div class="form-group">
+          <label for="createClientPhone">Телефон *</label>
+          <input type="tel" id="createClientPhone" placeholder="050..." required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="createClientEmail">Email</label>
+          <input type="email" id="createClientEmail" placeholder="example@gmail.com">
+        </div>
+        <div class="form-group">
+          <label for="createClientInstagram">Instagram</label>
+          <input type="text" id="createClientInstagram" placeholder="@username">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="createService">Основна послуга *</label>
+        <select id="createService" required>
+          <option value="">Оберіть основну послугу</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Додаткові послуги</label>
+        <div class="additional-services" id="createAdditionalServices">
+          <div style="color:#888;font-size:14px;">Завантаження...</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="createHall">Зал</label>
+          <select id="createHall">
+            <option value="">Оберіть зал</option>
+          </select>
+        </div>
+        <div class="form-group" id="createPhotographerGroup">
+          <label for="createPhotographer">Фотограф</label>
+          <select id="createPhotographer">
+            <option value="">Фотограф ще не призначений</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="createDate">Дата *</label>
+          <input type="date" id="createDate" required>
+        </div>
+        <div class="form-group">
+          <label for="createTime">Час *</label>
+          <input type="time" id="createTime" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="createComment">Коментар</label>
+        <textarea id="createComment" placeholder="Деталі зйомки після розмови з клієнтом"></textarea>
+      </div>
+      <div class="form-message" id="createError"></div>
+      <button type="submit" class="save-btn" id="createSaveBtn">Створити бронювання</button>
+    </form>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     МОДАЛКА РЕДАГУВАННЯ
+══════════════════════════════════ -->
+<div class="modal" id="editModal">
+  <div class="modal-overlay" id="editOverlay"></div>
+  <div class="modal-box">
+    <button class="modal-close" id="editClose" type="button">×</button>
+    <h2 class="modal-title">Редагувати бронювання</h2>
+    <p class="modal-subtitle">Тут можна перенести дату, змінити час, статус, суму або коментар.</p>
+    <form id="editForm">
+      <input type="hidden" id="editBookingId">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editDate">Дата</label>
+          <input type="date" id="editDate" required>
+        </div>
+        <div class="form-group">
+          <label for="editStatus">Статус</label>
+          <select id="editStatus" required>
+            <option value="new">Очікує підтвердження</option>
+            <option value="confirmed">Підтверджено</option>
+            <option value="paid">Оплачено</option>
+            <option value="completed">Завершено</option>
+            <option value="cancelled">Скасовано</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="editStartTime">Початок</label>
+          <input type="time" id="editStartTime" required>
+        </div>
+        <div class="form-group">
+          <label for="editEndTime">Завершення</label>
+          <input type="time" id="editEndTime" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="editAmount">Сума (грн)</label>
+        <input type="number" id="editAmount" min="0" step="0.01">
+      </div>
+      <div class="form-group">
+        <label for="editComment">Коментар</label>
+        <textarea id="editComment" placeholder="Коментар до бронювання"></textarea>
+      </div>
+      <button type="submit" class="save-btn">Зберегти зміни</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/auth-session.js"></script>
+<script src="/js/site-dialogs.js"></script>
+<script src="/js/admin.js"></script>
+
+
+<div class="confirm-modal" id="confirmModal">
+  <div class="confirm-overlay" id="confirmOverlay"></div>
+
+  <div class="confirm-box">
+    <div class="confirm-icon">!</div>
+    <h3 class="confirm-title" id="confirmTitle">Підтвердження</h3>
+    <p class="confirm-text" id="confirmText">Ви впевнені?</p>
+
+    <div class="confirm-actions">
+      <button type="button" class="confirm-cancel-btn" id="confirmCancelBtn">
+        Скасувати
+      </button>
+      <button type="button" class="confirm-delete-btn" id="confirmOkBtn">
+        Видалити
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="/js/hall-select-cleanup.js"></script>
+</body>
+</html>
